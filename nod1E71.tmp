@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://hm4ve1y8rlul"]
+
+[ext_resource type="Script" path="res://MapGeneration.gd" id="1_5ovqr"]
+[ext_resource type="Texture2D" uid="uid://us4jv2alprcx" path="res://TestTiles.svg" id="1_nj82w"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jn1s"]
+texture = ExtResource("1_nj82w")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6n2g"]
+texture = ExtResource("1_nj82w")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_a5tva"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_0jn1s")
+sources/1 = SubResource("TileSetAtlasSource_j6n2g")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5ovqr")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_a5tva")
+format = 2

@@ -1,0 +1,144 @@
+[gd_scene load_steps=18 format=3 uid="uid://cbxyvjoxixm3q"]
+
+[ext_resource type="Script" path="res://Player/CharacterController.gd" id="1_mnsty"]
+[ext_resource type="Texture2D" uid="uid://dmrjf51x11rp3" path="res://Resources/Sprites/Characters/Little Guy.png" id="2_opqqg"]
+[ext_resource type="Texture2D" uid="uid://tbav4w2w2h8n" path="res://Resources/Sprites/Characters/Lil Guy run.png" id="3_3dwdy"]
+[ext_resource type="Texture2D" uid="uid://bm7oepiyt6p6w" path="res://Resources/Sprites/Weapons/sword.png" id="4_gy2mb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wcm4"]
+atlas = ExtResource("2_opqqg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vwif"]
+atlas = ExtResource("2_opqqg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcckx"]
+atlas = ExtResource("2_opqqg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqjjf"]
+atlas = ExtResource("2_opqqg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1yub"]
+atlas = ExtResource("3_3dwdy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2wql"]
+atlas = ExtResource("3_3dwdy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dp7d"]
+atlas = ExtResource("3_3dwdy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m13gq"]
+atlas = ExtResource("3_3dwdy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bemn"]
+atlas = ExtResource("3_3dwdy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5osbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wcm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vwif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcckx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqjjf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1yub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2wql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dp7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m13gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bemn")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gktjq"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35g64"]
+size = Vector2(1, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6k8y"]
+size = Vector2(1.5, 10)
+
+[node name="Character" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_mnsty")
+move_speed = 35.0
+acceleration = 5.0
+deceleration = 3.0
+y_threshold = 0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(12, 12)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_5osbw")
+animation = &"run"
+autoplay = "idle"
+frame = 3
+frame_progress = 0.609183
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" groups=["player"]]
+top_level = true
+shape = SubResource("CircleShape2D_gktjq")
+
+[node name="Bottom Wall Check" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Bottom Wall Check" groups=["player"]]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_35g64")
+
+[node name="Top Wall Check" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Top Wall Check"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_q6k8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+position = Vector2(-9.53674e-07, -7.15256e-07)
+rotation = -2.44346
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("4_gy2mb")
+centered = false
+offset = Vector2(4.5, -5)
+metadata/_edit_group_ = true
+
+[connection signal="body_entered" from="CharacterBody2D/Bottom Wall Check" to="CharacterBody2D" method="_on_bottom_wall_check_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/Top Wall Check" to="CharacterBody2D" method="_on_top_wall_check_body_entered"]

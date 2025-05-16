@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxjeixuceyg8g"
+path="res://.godot/imported/Wake Before The Coming.mp3-db39f9476894651b608d664583766fd7.mp3str"
+
+[deps]
+
+source_file="res://Music/Wake Before The Coming.mp3"
+dest_files=["res://.godot/imported/Wake Before The Coming.mp3-db39f9476894651b608d664583766fd7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

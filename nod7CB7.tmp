@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://hm4ve1y8rlul"]
+
+[ext_resource type="Script" path="res://MapGeneration.gd" id="1_5ovqr"]
+[ext_resource type="Texture2D" uid="uid://us4jv2alprcx" path="res://TestTiles.svg" id="1_nj82w"]
+[ext_resource type="Texture2D" uid="uid://bjopc7eqwkawa" path="res://grass tiles.png" id="2_i4h6d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk86k"]
+resource_name = "Floors"
+texture = ExtResource("2_i4h6d")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2qvjm"]
+resource_name = "Walls"
+texture = ExtResource("2_i4h6d")
+texture_region_size = Vector2i(32, 32)
+1:2/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jn1s"]
+texture = ExtResource("1_nj82w")
+texture_region_size = Vector2i(32, 32)
+use_texture_padding = false
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6n2g"]
+texture = ExtResource("1_nj82w")
+texture_region_size = Vector2i(32, 32)
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+1:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6fi7k"]
+resource_name = "Borders"
+texture = ExtResource("2_i4h6d")
+texture_region_size = Vector2i(32, 32)
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+2:2/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_a5tva"]
+tile_size = Vector2i(32, 32)
+sources/10 = SubResource("TileSetAtlasSource_0jn1s")
+sources/11 = SubResource("TileSetAtlasSource_j6n2g")
+sources/0 = SubResource("TileSetAtlasSource_wk86k")
+sources/1 = SubResource("TileSetAtlasSource_2qvjm")
+sources/2 = SubResource("TileSetAtlasSource_6fi7k")
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_5ovqr")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_a5tva")
+format = 2
+layer_0/name = "Floors"
+layer_1/name = "Walls"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Left Wall Borders"
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Left Corner Borders"
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Top Borders"
+layer_4/tile_data = PackedInt32Array()
+layer_5/name = "Right Wall Borders"
+layer_5/tile_data = PackedInt32Array()
+layer_6/name = "Right Corner Borders"
+layer_6/tile_data = PackedInt32Array()

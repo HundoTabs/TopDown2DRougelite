@@ -1,0 +1,234 @@
+[gd_scene load_steps=21 format=4 uid="uid://hm4ve1y8rlul"]
+
+[ext_resource type="Script" path="res://Map Gen/MapGeneration.gd" id="1_sgilr"]
+[ext_resource type="Shader" path="res://Resources/Shaders/CharacterShader.gdshader" id="2_n20lh"]
+[ext_resource type="Texture2D" uid="uid://bjopc7eqwkawa" path="res://Resources/Sprites/Levels/grass tiles.png" id="2_xq3jb"]
+[ext_resource type="Texture2D" uid="uid://cdpt6qnhpw58f" path="res://Resources/Shaders/Shader Colors/Map Palettes/stage1_pallete.png" id="3_cc74j"]
+[ext_resource type="Texture2D" uid="uid://duc3u3foqxpox" path="res://Resources/Shaders/Shader Colors/Map Palettes/all purple palette.png" id="5_k8j1f"]
+[ext_resource type="Shader" path="res://Resources/Shaders/CRT.gdshader" id="6_2j6h0"]
+[ext_resource type="AudioStream" uid="uid://dxjeixuceyg8g" path="res://Music/Wake Before The Coming.mp3" id="6_utdlh"]
+
+[sub_resource type="Environment" id="Environment_1k102"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 6.8
+glow_levels/2 = 12.05
+glow_levels/3 = 21.0
+glow_levels/4 = 17.45
+glow_levels/5 = 13.0
+glow_levels/6 = 13.7
+glow_levels/7 = 15.35
+glow_normalized = true
+glow_bloom = 0.01
+glow_blend_mode = 0
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 1.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b53dj"]
+shader = ExtResource("2_n20lh")
+shader_parameter/paletteSize = Vector2i(18, 1)
+shader_parameter/palette = ExtResource("5_k8j1f")
+shader_parameter/origPalette = ExtResource("3_cc74j")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7wv7e"]
+resource_name = "Walls"
+texture = ExtResource("2_xq3jb")
+8:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2dbn5"]
+resource_name = "Undertile Floors"
+texture = ExtResource("2_xq3jb")
+8:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_p1rbi"]
+sources/0 = SubResource("TileSetAtlasSource_7wv7e")
+sources/1 = SubResource("TileSetAtlasSource_2dbn5")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnaan"]
+absorbent = true
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dnrft"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk86k"]
+resource_name = "Floors"
+texture = ExtResource("2_xq3jb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dnrft")
+1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dnrft")
+2:0/0 = 0
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dnrft")
+3:0/0 = 0
+3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dnrft")
+4:0/0 = 0
+4:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dnrft")
+5:0/0 = 0
+5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dnrft")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2qvjm"]
+resource_name = "Top Walls"
+texture = ExtResource("2_xq3jb")
+texture_region_size = Vector2i(32, 32)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/z_index = 2
+1:2/0/y_sort_origin = 2
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6fi7k"]
+resource_name = "Borders"
+texture = ExtResource("2_xq3jb")
+texture_region_size = Vector2i(32, 32)
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+2:2/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o4a6l"]
+resource_name = "Secondary Floor"
+texture = ExtResource("2_xq3jb")
+margins = Vector2i(7, 39)
+texture_region_size = Vector2i(42, 42)
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_a5tva"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_xnaan")
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_wk86k")
+sources/1 = SubResource("TileSetAtlasSource_2qvjm")
+sources/2 = SubResource("TileSetAtlasSource_6fi7k")
+sources/3 = SubResource("TileSetAtlasSource_o4a6l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8dxm"]
+shader = ExtResource("6_2j6h0")
+shader_parameter/resolution = Vector2(1280, 720)
+shader_parameter/scan_line_amount = 0.2
+shader_parameter/warp_amount = 0.08
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.04
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.8
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="Generation" type="Node2D"]
+script = ExtResource("1_sgilr")
+grid_size = null
+walk_steps = null
+direction_chance = null
+enemies_in_area = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1k102")
+
+[node name="MapLayers" type="Node" parent="."]
+
+[node name="IndexedWalls" type="Node" parent="MapLayers"]
+
+[node name="Index Walls" type="TileMapLayer" parent="MapLayers/IndexedWalls"]
+z_index = 5
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_p1rbi")
+
+[node name="Floors" type="TileMapLayer" parent="MapLayers"]
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_map_data = PackedByteArray("AAANAAcAAAACAAAAAAANAAgAAAACAAAAAAAOAAgAAAACAAAAAAAPAAkAAAACAAAAAAAQAAkAAAACAAAAAAARAAoAAAACAAAAAAASAAsAAAACAAAAAAATAAsAAAACAAAAAAAUAAwAAAACAAAAAAAVAAwAAAACAAAAAAAWAAwAAAACAAAAAAAXAA0AAAACAAAAAAAYAA0AAAACAAAAAAAYAA4AAAACAAAAAAAVAA0AAAACAAAAAAAUAA0AAAACAAAAAAAUAA4AAAACAAAAAAAUAA8AAAACAAAAAAAVAA8AAAACAAAAAAAWAA8AAAACAAAAAAAXAA8AAAACAAAAAAAYAA8AAAACAAAAAAAXAAwAAAACAAAAAAAVAA4AAAACAAAAAAAWAA4AAAACAAAAAAAXAA4AAAACAAAAAAAWAA0AAAACAAAAAAAWABAAAAACAAAAAAAXABAAAAACAAAAAAAYAAwAAAACAAAAAAAXAAsAAAACAAAAAAAWAAsAAAACAAAAAAAVAAsAAAACAAAAAAAUAAsAAAACAAAAAAATAAwAAAACAAAAAAATAA0AAAACAAAAAAASAA0AAAACAAAAAAASAA4AAAACAAAAAAASAA8AAAACAAAAAAATAA8AAAACAAAAAAAUABAAAAACAAAAAAATABAAAAACAAAAAAATAA4AAAACAAAAAAA=")
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Depth Walls" type="TileMapLayer" parent="MapLayers"]
+z_index = 2
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Left Wall Borders" type="TileMapLayer" parent="MapLayers"]
+z_index = 4
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Left Corner Borders" type="TileMapLayer" parent="MapLayers"]
+z_index = 4
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Top Borders" type="TileMapLayer" parent="MapLayers"]
+z_index = 4
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Right Wall Borders" type="TileMapLayer" parent="MapLayers"]
+z_index = 4
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Right Corner Borders" type="TileMapLayer" parent="MapLayers"]
+z_index = 4
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Under Depth Tiles" type="TileMapLayer" parent="MapLayers"]
+z_index = -1
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="Second Floor Layer" type="TileMapLayer" parent="MapLayers"]
+z_index = 1
+material = SubResource("ShaderMaterial_b53dj")
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+
+[node name="IndexedWalls" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_p1rbi")
+format = 2
+
+[node name="Map" type="TileMap" parent="." groups=["walls"]]
+visible = false
+z_as_relative = false
+y_sort_enabled = true
+use_parent_material = true
+tile_set = SubResource("TileSet_a5tva")
+format = 2
+
+[node name="EnemyController" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_i8dxm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_utdlh")
+volume_db = -15.0
+autoplay = true

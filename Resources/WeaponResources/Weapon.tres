@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InGameWeapon" load_steps=3 format=3 uid="uid://dvxdguwty0xis"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/Weapon.gd" id="1_e1i4b"]
+[ext_resource type="Texture2D" uid="uid://bm7oepiyt6p6w" path="res://Resources/Sprites/Weapons/sword.png" id="2_upnmf"]
+
+[resource]
+script = ExtResource("1_e1i4b")
+weapon_name = ""
+weapon_texture = ExtResource("2_upnmf")
+weapon_type = 0
+weapon_smear_offset = Vector2(0, 0)
+damage = 4
+swing_speed = 0.3
+swing_length = 0
+weapon_swing_type = 0

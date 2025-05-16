@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0cchtuajmv3j"]
+
+[ext_resource type="Texture2D" uid="uid://cv6p3mdxy8ve4" path="res://Resources/Sprites/Weapons/arcane.png" id="1_j64mt"]
+[ext_resource type="Script" path="res://Scripts/Weapons/Sigil.gd" id="2_22mje"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5k38i"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_jvbdk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.496403, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gwi3b"]
+curve = SubResource("Curve_jvbdk")
+
+[sub_resource type="Curve" id="Curve_hjf75"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 77.8235), 0.0, 0.0, 0, 0, Vector2(1, 167.294), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v1y4t"]
+curve = SubResource("Curve_hjf75")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2xk8w"]
+particle_flag_disable_z = true
+angle_min = -1.0
+angle_max = 1.0
+angle_curve = SubResource("CurveTexture_v1y4t")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+alpha_curve = SubResource("CurveTexture_gwi3b")
+
+[node name="Sigil" type="GPUParticles2D"]
+z_index = 1
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_5k38i")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_2xk8w")
+texture = ExtResource("1_j64mt")
+one_shot = true
+fixed_fps = 60
+script = ExtResource("2_22mje")

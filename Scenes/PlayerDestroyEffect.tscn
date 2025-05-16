@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://nv82h2ayb6wx"]
+
+[ext_resource type="Texture2D" uid="uid://vshaebicrthy" path="res://Resources/Sprites/Weapons/arcane_particles.png" id="1_8tv03"]
+[ext_resource type="Script" path="res://Scripts/PlayerDestroyEffect.gd" id="2_7vt7p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1yqnd"]
+particles_animation = true
+particles_anim_h_frames = 11
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_logt3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 22.75
+angular_velocity_min = -385.48
+angular_velocity_max = 169.41
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 49.68
+linear_accel_max = 98.04
+radial_accel_min = 32.68
+radial_accel_max = 76.21
+scale_min = 0.5
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+anim_speed_min = 0.42
+anim_speed_max = 2.98
+turbulence_enabled = true
+turbulence_noise_speed_random = 1.0
+
+[node name="DestoryParticles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_1yqnd")
+emitting = false
+amount = 36
+process_material = SubResource("ParticleProcessMaterial_logt3")
+texture = ExtResource("1_8tv03")
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("2_7vt7p")

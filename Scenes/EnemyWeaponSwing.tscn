@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxw1uxosdq55c"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/EnemyWeaponSwing.gd" id="1_un0ox"]
+[ext_resource type="Texture2D" uid="uid://ba44dxy3alddv" path="res://Resources/Sprites/Weapons/baddie_swing.png" id="2_prhk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5i03"]
+atlas = ExtResource("2_prhk1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ugew"]
+atlas = ExtResource("2_prhk1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl3qu"]
+atlas = ExtResource("2_prhk1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcglw"]
+atlas = ExtResource("2_prhk1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb7tx"]
+atlas = ExtResource("2_prhk1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii1ok"]
+atlas = ExtResource("2_prhk1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kijad"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_q5i03")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_8ugew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl3qu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcglw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb7tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii1ok")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0sl1"]
+size = Vector2(25, 32)
+
+[node name="SwingNode" type="Node2D"]
+script = ExtResource("1_un0ox")
+
+[node name="SwingSprite" type="AnimatedSprite2D" parent="."]
+z_index = 100
+scale = Vector2(1.125, 1.867)
+sprite_frames = SubResource("SpriteFrames_kijad")
+animation = &"swing"
+offset = Vector2(20, 0)
+
+[node name="Area" type="Area2D" parent="SwingSprite" groups=["EnemyAttackHitbox"]]
+
+[node name="Hurtbox" type="CollisionShape2D" parent="SwingSprite/Area" groups=["EnemyAttackHitbox"]]
+position = Vector2(18, 0)
+shape = SubResource("RectangleShape2D_t0sl1")
+
+[connection signal="animation_finished" from="SwingSprite" to="." method="_on_swing_sprite_animation_finished"]
