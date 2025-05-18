@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name PlayerCharacter
+
+@export var Stats : EntityResource
 
 @onready var sprite = $Sprite
 @onready var weapon = $Weapon

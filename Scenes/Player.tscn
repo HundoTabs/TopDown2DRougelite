@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbxyvjoxixm3q"]
+[gd_scene load_steps=20 format=3 uid="uid://cbxyvjoxixm3q"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_lqs0g"]
+[ext_resource type="Resource" uid="uid://uikaroqswtfp" path="res://Scripts/Entities/Player/Player.tres" id="2_8lwyd"]
 [ext_resource type="Resource" uid="uid://bg3gqrbig8nqb" path="res://Resources/WeaponResources/WeaponTypes/ShortSword.tres" id="2_mcy01"]
 [ext_resource type="Texture2D" uid="uid://dmrjf51x11rp3" path="res://Resources/Sprites/Characters/Little Guy.png" id="2_opqqg"]
 [ext_resource type="Texture2D" uid="uid://tbav4w2w2h8n" path="res://Resources/Sprites/Characters/Lil Guy run.png" id="3_3dwdy"]
@@ -97,6 +98,7 @@ size = Vector2(1.5, 10)
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_lqs0g")
+Stats = ExtResource("2_8lwyd")
 weapon_object = ExtResource("2_mcy01")
 move_speed = 110.0
 acceleration = 120.0
