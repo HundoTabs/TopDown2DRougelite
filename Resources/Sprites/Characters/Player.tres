@@ -1,0 +1,80 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://dpe28bwj2cm3r"]
+
+[ext_resource type="Texture2D" uid="uid://dmrjf51x11rp3" path="res://Resources/Sprites/Characters/Little Guy.png" id="1_61m6l"]
+[ext_resource type="Texture2D" uid="uid://tbav4w2w2h8n" path="res://Resources/Sprites/Characters/Lil Guy run.png" id="2_8qfrl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wcm4"]
+atlas = ExtResource("1_61m6l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vwif"]
+atlas = ExtResource("1_61m6l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcckx"]
+atlas = ExtResource("1_61m6l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqjjf"]
+atlas = ExtResource("1_61m6l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1yub"]
+atlas = ExtResource("2_8qfrl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2wql"]
+atlas = ExtResource("2_8qfrl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dp7d"]
+atlas = ExtResource("2_8qfrl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m13gq"]
+atlas = ExtResource("2_8qfrl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bemn"]
+atlas = ExtResource("2_8qfrl")
+region = Rect2(128, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wcm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vwif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcckx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqjjf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1yub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2wql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dp7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m13gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bemn")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]

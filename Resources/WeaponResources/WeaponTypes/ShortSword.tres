@@ -1,17 +1,9 @@
-[gd_resource type="Resource" script_class="InGameWeapon" load_steps=4 format=3 uid="uid://bg3gqrbig8nqb"]
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://bg3gqrbig8nqb"]
 
-[ext_resource type="Script" path="res://Scripts/Weapons/Weapon.gd" id="1_01wx3"]
-[ext_resource type="Texture2D" uid="uid://bm7oepiyt6p6w" path="res://Resources/Sprites/Weapons/sword.png" id="2_hkyyn"]
-[ext_resource type="Texture2D" uid="uid://bcouaa5a0hy38" path="res://Resources/Sprites/Weapons/sword_swing.png" id="2_stiql"]
+[ext_resource type="Script" path="res://Scripts/Weapons/Weapon Resource/WeaponStats.gd" id="1_x7o1n"]
 
 [resource]
-script = ExtResource("1_01wx3")
-weapon_name = "Broad Sword"
-weapon_texture = ExtResource("2_hkyyn")
-weapon_smear_texture = ExtResource("2_stiql")
-weapon_type = 0
-weapon_smear_offset = Vector2(4.5, -20)
-damage = 4
-swing_speed = 0.3
-swing_length = 0
-weapon_swing_type = 0
+script = ExtResource("1_x7o1n")
+max_damage = 0
+max_cooldown = 0
+max_swing = 0

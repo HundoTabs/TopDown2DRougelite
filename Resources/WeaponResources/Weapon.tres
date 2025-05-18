@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InGameWeapon" load_steps=3 format=3 uid="uid://dvxdguwty0xis"]
 
-[ext_resource type="Script" path="res://Scripts/Weapons/Weapon.gd" id="1_e1i4b"]
+[ext_resource type="Script" path="res://Scripts/Weapons/Weapon Resource/WeaponStats.gd" id="1_e1i4b"]
 [ext_resource type="Texture2D" uid="uid://bm7oepiyt6p6w" path="res://Resources/Sprites/Weapons/sword.png" id="2_upnmf"]
 
 [resource]

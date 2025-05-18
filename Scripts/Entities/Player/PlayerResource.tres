@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EntityResource" load_steps=3 format=3 uid="uid://u1ko78ua17d"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/EntityResource.gd" id="1_blc1c"]
+[ext_resource type="SpriteFrames" uid="uid://dpe28bwj2cm3r" path="res://Resources/Sprites/Characters/Player.tres" id="2_51pf2"]
+
+[resource]
+script = ExtResource("1_blc1c")
+health = 0
+speed = 110.0
+name = "The Reborn"
+max_health = 10
+max_speed = 110.0
+sprite_frames = ExtResource("2_51pf2")

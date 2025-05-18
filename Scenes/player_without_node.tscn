@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkrgagedwcywi"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_3o4jq"]
+[ext_resource type="Resource" uid="uid://bg3gqrbig8nqb" path="res://Resources/WeaponResources/WeaponTypes/ShortSword.tres" id="2_pjtbi"]
+[ext_resource type="Texture2D" uid="uid://bm7oepiyt6p6w" path="res://Resources/Sprites/Weapons/sword.png" id="3_54wlp"]
+[ext_resource type="SpriteFrames" uid="uid://dpe28bwj2cm3r" path="res://Resources/Sprites/Characters/Player.tres" id="4_gd06n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gktjq"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35g64"]
+size = Vector2(1, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6k8y"]
+size = Vector2(1.5, 10)
+
+[node name="Player" type="CharacterBody2D" groups=["PlayerCollision"]]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_3o4jq")
+weapon_object = ExtResource("2_pjtbi")
+move_speed = 110.0
+acceleration = 120.0
+y_threshold = 0
+swing_duration = 0.1
+
+[node name="Weapon" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+position = Vector2(-9.53674e-07, -7.15256e-07)
+rotation = -2.44346
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("3_54wlp")
+centered = false
+offset = Vector2(4.5, -5)
+
+[node name="MagicCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="PlayerCam" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = ExtResource("4_gd06n")
+animation = &"run"
+autoplay = "idle"
+
+[node name="Collision" type="CollisionShape2D" parent="." groups=["player"]]
+top_level = true
+z_index = 2
+shape = SubResource("CircleShape2D_gktjq")
+
+[node name="Bottom Wall Check" type="Area2D" parent="."]
+
+[node name="TopWallCheckHitbox" type="CollisionShape2D" parent="Bottom Wall Check" groups=["player"]]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_35g64")
+
+[node name="Top Wall Check" type="Area2D" parent="."]
+
+[node name="BottomWallCheckHitbox" type="CollisionShape2D" parent="Top Wall Check"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_q6k8y")
+
+[connection signal="timeout" from="MagicCooldown" to="." method="_on_magic_cooldown_timeout"]
+[connection signal="body_entered" from="Bottom Wall Check" to="." method="_on_bottom_wall_check_body_entered"]
+[connection signal="body_entered" from="Top Wall Check" to="." method="_on_top_wall_check_body_entered"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name PlayerCharacter
 
-@export var Stats : EntityResource
+@export var stats : EntityResource : set = set_stats
 
 @onready var sprite = $Sprite
 @onready var weapon = $Weapon
@@ -38,10 +38,9 @@ var collided_with_bottom = false
 
 func _ready():
 	Global.player = self
-	weapon_damage = weapon_object.damage
-	weapon_smear_offset = weapon_object.weapon_smear_offset
-	weapon_swing_speed = weapon_object.swing_speed
-	
+
+func set_stats(resource: EntityResource) -> void:
+	stats = resource
 
 func get_input_vector() -> Vector2:
 	var input_vector = Vector2.ZERO

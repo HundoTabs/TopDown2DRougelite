@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var player_stats : EntityResource
+
 @onready var floors: TileMapLayer = $MapLayers/Floors
 @onready var second_floor_layer: TileMapLayer = $"MapLayers/Second Floor Layer"
 @onready var depth_walls: TileMapLayer = $"MapLayers/Depth Walls"
@@ -11,7 +13,7 @@ extends Node2D
 @onready var under_depth_tiles: TileMapLayer = $"MapLayers/IndexedWalls/Under Depth Tiles"
 @onready var index_walls: TileMapLayer = $"MapLayers/IndexedWalls/Index Walls"
 
-@onready var character_scene = preload("res://Scenes/Player.tscn")
+@onready var character_scene = preload("res://Scenes/player_without_node.tscn")
 @onready var EnemyController = $EnemyController
 @onready var PlayerController = null
 
@@ -29,6 +31,7 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	generate_map()
+	var new_stats : EntityResource = player_stats.create_instance()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("reset map"):

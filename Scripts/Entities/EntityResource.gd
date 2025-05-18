@@ -10,7 +10,7 @@ func set_health(value: int) -> void:
 	health = clampi(value, 0, max_health)
 
 func set_speed(value: float) -> void:
-	self.speed = value
+	speed = value
 
 func create_instance() -> Resource:
 	var instance : EntityResource = self.duplicate()

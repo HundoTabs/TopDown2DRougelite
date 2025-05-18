@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://crsjcsccmayju"]
+
+[ext_resource type="Script" path="res://WeaponNode.gd" id="1_2lmea"]
+[ext_resource type="Script" path="res://Scripts/Weapons/Weapon Resource/Weapon.gd" id="2_it1jl"]
+[ext_resource type="Texture2D" uid="uid://luvr2rd86t27" path="res://Resources/Sprites/Weapons/Broadsword.png" id="3_t7grk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_davok"]
+
+[sub_resource type="Resource" id="Resource_gnb7d"]
+script = ExtResource("2_it1jl")
+weapon_name = ""
+sprite = SubResource("SpriteFrames_davok")
+weapon_type = 0
+weapon_swing = 0
+weapon_smear_offset = Vector2(0, 0)
+max_damage = 0
+max_cooldown = 0
+max_swing = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xje8i"]
+atlas = ExtResource("3_t7grk")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etal6"]
+atlas = ExtResource("3_t7grk")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttljj"]
+atlas = ExtResource("3_t7grk")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_raa4t"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_xje8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etal6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttljj")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 0.0
+}]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_2lmea")
+stats = SubResource("Resource_gnb7d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -2.44346
+sprite_frames = SubResource("SpriteFrames_raa4t")
+animation = &"new_animation"
+offset = Vector2(12, 0)

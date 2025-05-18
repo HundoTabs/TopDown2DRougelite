@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=4 uid="uid://hm4ve1y8rlul"]
+[gd_scene load_steps=22 format=4 uid="uid://hm4ve1y8rlul"]
 
 [ext_resource type="Script" path="res://Map Gen/MapGeneration.gd" id="1_sgilr"]
+[ext_resource type="Resource" uid="uid://u1ko78ua17d" path="res://Scripts/Entities/Player/PlayerResource.tres" id="2_7dojk"]
 [ext_resource type="Shader" path="res://Resources/Shaders/CharacterShader.gdshader" id="2_n20lh"]
 [ext_resource type="Texture2D" uid="uid://bjopc7eqwkawa" path="res://Resources/Sprites/Levels/grass tiles.png" id="2_xq3jb"]
 [ext_resource type="Texture2D" uid="uid://cdpt6qnhpw58f" path="res://Resources/Shaders/Shader Colors/Map Palettes/stage1_pallete.png" id="3_cc74j"]
@@ -130,6 +131,7 @@ shader_parameter/pixel_strength = -2.0
 
 [node name="Generation" type="Node2D"]
 script = ExtResource("1_sgilr")
+player_stats = ExtResource("2_7dojk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1k102")
@@ -227,4 +229,3 @@ grow_vertical = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_utdlh")
 volume_db = -15.0
-autoplay = true

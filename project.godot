@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
+Global="*res://Scripts/Globals/Global.gd"
+SignalBus="*res://Scripts/Globals/SignalBus.gd"
 
 [dotnet]
 
@@ -38,7 +39,8 @@ folder_colors={
 "res://Map Gen/": "green",
 "res://Player/": "purple",
 "res://Resources/": "red",
-"res://Scenes/": "blue"
+"res://Scenes/": "blue",
+"res://Scripts/": "purple"
 }
 
 [input]

@@ -10,7 +10,7 @@ signal stats_chagned
 @export var sprite_frames : SpriteFrames : get = get_sprite
 
 func set_character_name(string: String) -> void:
-	self.name = string
+	name = string
 
 func take_damage(damage: int) -> void:
 	if damage <= 0:
